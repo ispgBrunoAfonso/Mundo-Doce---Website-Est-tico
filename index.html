@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mundo Doce — Pastelaria artesanal em Vila Nova de Gaia. Doces maravilhosos, atendimento acolhedor, opções vegan. R. da Bélgica 1774, 4400-052 V. N. Gaia." />
+  <title>Mundo Doce — Pastelaria · Vila Nova de Gaia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #FAF6F0;
+      --cream-deep:  #F2EBE0;
+      --brown:       #3B2314;
+      --brown-mid:   #7A4828;
+      --caramel:     #C4803A;
+      --caramel-lt:  #E8B87A;
+      --sage:        #6B8C6E;
+      --white:       #FFFFFF;
+      --text:        #2A1A0F;
+      --text-muted:  #7A6355;
+      --border:      rgba(58,35,20,.12);
+      --radius:      14px;
+      --radius-lg:   24px;
+      --shadow-sm:   0 2px 12px rgba(58,35,20,.08);
+      --shadow-md:   0 8px 32px rgba(58,35,20,.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font-family: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,246,240,.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: var(--shadow-sm); }
+
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--brown);
+      letter-spacing: -.01em;
+    }
+    .nav-brand span { color: var(--caramel); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--brown); }
+
+    .nav-cta {
+      background: var(--caramel);
+      color: var(--white) !important;
+      padding: .5rem 1.25rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: .875rem;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--brown-mid); transform: translateY(-1px); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--brown);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 5vw 2rem;
+      z-index: 99;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; color: var(--caramel); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 68px;
+      background: var(--cream);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 5vw 6rem 8vw;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--cream-deep);
+      border: 1px solid var(--border);
+      color: var(--caramel);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .4rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 1.75rem;
+      width: fit-content;
+    }
+
+    .hero-badge svg { width: 14px; height: 14px; }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--brown);
+      margin-bottom: 1.5rem;
+      letter-spacing: -.02em;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--caramel);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: var(--brown);
+      color: var(--white);
+      font-weight: 500;
+      font-size: .95rem;
+      padding: .875rem 2rem;
+      border-radius: 40px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--brown-mid); transform: translateY(-2px); }
+    .btn-primary svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: transparent;
+      color: var(--brown);
+      font-weight: 500;
+      font-size: .95rem;
+      padding: .875rem 2rem;
+      border-radius: 40px;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      transition: border-color .2s, background .2s, transform .15s;
+    }
+    .btn-outline:hover { border-color: var(--caramel); background: var(--cream-deep); transform: translateY(-2px); }
+    .btn-outline svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item { display: flex; flex-direction: column; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--brown);
+    }
+    .stat-label {
+      font-size: .8rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: .02em;
+    }
+
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img-wrapper {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(250,246,240,.35) 0%, transparent 60%);
+    }
+
+    .hero-card-float {
+      position: absolute;
+      bottom: 2.5rem;
+      left: -1.5rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: .875rem;
+      max-width: 230px;
+      animation: floatUp 6s ease-in-out infinite;
+    }
+
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .hero-card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--cream-deep);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-card-icon svg { width: 22px; height: 22px; color: var(--caramel); }
+    .hero-card-text { display: flex; flex-direction: column; }
+    .hero-card-title { font-size: .875rem; font-weight: 500; color: var(--brown); }
+    .hero-card-sub { font-size: .775rem; color: var(--text-muted); }
+
+    .hero-rating-float {
+      position: absolute;
+      top: 2.5rem;
+      right: 2rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: .875rem 1.25rem;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      animation: floatUp 7s ease-in-out infinite .5s;
+    }
+    .stars { color: #F59E0B; font-size: 1rem; letter-spacing: 1px; }
+    .rating-text { font-size: .875rem; font-weight: 500; color: var(--brown); }
+
+    /* ── SECTIONS BASE ── */
+    section { scroll-margin-top: 80px; }
+
+    .section-label {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      margin-bottom: .75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--brown);
+      letter-spacing: -.02em;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.8;
+      max-width: 540px;
+    }
+
+    /* ── SOBRE NÓS ── */
+    #sobre {
+      padding: 7rem 8vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      background: var(--white);
+    }
+
+    .sobre-media {
+      position: relative;
+    }
+
+    .sobre-img-main {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .sobre-img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sobre-img-accent {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      width: 55%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 6px solid var(--white);
+      box-shadow: var(--shadow-md);
+      aspect-ratio: 1;
+    }
+    .sobre-img-accent img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sobre-content { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .sobre-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .875rem;
+      margin-top: .5rem;
+    }
+    .sobre-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: .95rem;
+      color: var(--text-muted);
+    }
+    .sobre-list-icon {
+      width: 22px;
+      height: 22px;
+      background: var(--cream-deep);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .sobre-list-icon svg { width: 13px; height: 13px; color: var(--caramel); }
+
+    /* ── MENU / ESPECIALIDADES ── */
+    #menu {
+      padding: 7rem 8vw;
+      background: var(--cream);
+    }
+
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .menu-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .menu-card-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--cream-deep);
+    }
+    .menu-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s;
+    }
+    .menu-card:hover .menu-card-img img { transform: scale(1.06); }
+
+    .menu-card-body { padding: 1.25rem; }
+    .menu-card-tag {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      margin-bottom: .4rem;
+    }
+    .menu-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: .4rem;
+    }
+    .menu-card-desc {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .menu-card-featured {
+      grid-column: span 2;
+    }
+    .menu-card-featured .menu-card-img {
+      aspect-ratio: 16/7;
+    }
+
+    /* ── AVALIAÇÕES ── */
+    #avaliacoes {
+      padding: 7rem 8vw;
+      background: var(--brown);
+    }
+
+    #avaliacoes .section-label { color: var(--caramel-lt); }
+    #avaliacoes .section-title { color: var(--white); }
+    #avaliacoes .section-subtitle { color: rgba(255,255,255,.6); }
+
+    .reviews-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .review-stars { color: #F59E0B; font-size: 1rem; letter-spacing: 2px; }
+    .review-text {
+      font-size: .95rem;
+      color: rgba(255,255,255,.8);
+      line-height: 1.75;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+      flex: 1;
+    }
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding-top: .875rem;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .review-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--caramel);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .review-name {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+    .review-date {
+      font-size: .775rem;
+      color: rgba(255,255,255,.45);
+    }
+
+    .google-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+      padding: .5rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 2rem;
+      color: rgba(255,255,255,.7);
+      font-size: .82rem;
+    }
+    .google-badge svg { width: 18px; height: 18px; }
+
+    /* ── HORÁRIOS ── */
+    #horario {
+      padding: 6rem 8vw;
+      background: var(--cream-deep);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+    }
+    .hours-table tr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .875rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table .day {
+      font-size: .9rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .hours-table .time {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--brown);
+    }
+    .hours-table .closed {
+      font-size: .875rem;
+      font-weight: 500;
+      color: #E24B4A;
+    }
+    .hours-table .today .day,
+    .hours-table .today .time {
+      color: var(--caramel);
+      font-weight: 600;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .4rem 1rem;
+      border-radius: 40px;
+      font-size: .8rem;
+      font-weight: 500;
+      margin-top: 1rem;
+    }
+    .status-open {
+      background: rgba(107,140,110,.15);
+      color: var(--sage);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--sage);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+
+    .info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .info-card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--cream-deep);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-card-icon svg { width: 20px; height: 20px; color: var(--caramel); }
+    .info-card-title {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .25rem;
+    }
+    .info-card-value {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--brown);
+      line-height: 1.5;
+    }
+    .info-card-value a {
+      color: var(--caramel);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .info-card-value a:hover { color: var(--brown); }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      padding: 7rem 8vw;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .form-group label {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: .875rem 1rem;
+      font-size: .95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--caramel);
+      box-shadow: 0 0 0 3px rgba(196,128,58,.12);
+    }
+    .form-group textarea { min-height: 120px; }
+
+    .form-submit {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .form-note {
+      font-size: .8rem;
+      color: var(--text-muted);
+    }
+
+    .form-success {
+      display: none;
+      background: rgba(107,140,110,.1);
+      border: 1px solid rgba(107,140,110,.3);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      color: var(--sage);
+      font-size: .9rem;
+      font-weight: 500;
+      align-items: center;
+      gap: .75rem;
+    }
+    .form-success.show { display: flex; }
+    .form-success svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    /* ── MAP ── */
+    .map-section { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .map-frame {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      height: 300px;
+    }
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .map-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .7rem 1.25rem;
+      border-radius: 40px;
+      font-size: .875rem;
+      font-weight: 500;
+      border: 1.5px solid var(--border);
+      background: var(--cream);
+      color: var(--brown);
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .map-btn:hover { border-color: var(--caramel); background: var(--cream-deep); }
+    .map-btn svg { width: 17px; height: 17px; color: var(--caramel); }
+    .map-btn.primary {
+      background: var(--caramel);
+      border-color: var(--caramel);
+      color: var(--white);
+    }
+    .map-btn.primary svg { color: var(--white); }
+    .map-btn.primary:hover { background: var(--brown-mid); border-color: var(--brown-mid); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown);
+      padding: 4rem 8vw 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .footer-brand span { color: var(--caramel-lt); }
+    .footer-tagline {
+      font-size: .9rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.7;
+      margin-top: .75rem;
+      max-width: 260px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: .75rem;
+      margin-top: 1.5rem;
+    }
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.6);
+      transition: background .2s, color .2s;
+      cursor: pointer;
+    }
+    .social-icon:hover { background: var(--caramel); color: var(--white); border-color: transparent; }
+    .social-icon svg { width: 18px; height: 18px; }
+
+    .footer-col-title {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 1.25rem;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .footer-links a {
+      font-size: .9rem;
+      color: rgba(255,255,255,.6);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-size: .825rem;
+      color: rgba(255,255,255,.35);
+    }
+    .footer-copy a { color: rgba(255,255,255,.5); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-visual {
+        height: 55vw;
+        min-height: 320px;
+        position: relative;
+      }
+      .hero-content { padding: 5rem 5vw 3rem; }
+      .hero-card-float { left: 1rem; bottom: 1rem; }
+      .hero-rating-float { top: 1rem; right: 1rem; }
+
+      #sobre { grid-template-columns: 1fr; gap: 3rem; }
+      .sobre-img-accent { right: -1rem; bottom: -1rem; width: 45%; }
+      .sobre-media { margin-right: 3rem; }
+
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+      .menu-card-featured { grid-column: span 2; }
+
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+
+      #horario { grid-template-columns: 1fr; gap: 3rem; }
+      #contacto { grid-template-columns: 1fr; gap: 3rem; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      h1 { font-size: clamp(2.25rem, 8vw, 3rem); }
+
+      .hero-stats { gap: 1.5rem; }
+
+      .menu-grid { grid-template-columns: 1fr; }
+      .menu-card-featured { grid-column: span 1; }
+
+      .reviews-grid { grid-template-columns: 1fr; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+
+      #sobre, #horario, #contacto, #menu, #avaliacoes { padding: 5rem 5vw; }
+      footer { padding: 3rem 5vw 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="navbar" role="navigation" aria-label="Navegação principal">
+  <a href="#hero" class="nav-brand" aria-label="Mundo Doce — Página inicial">Mundo <span>Doce</span></a>
+
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre nós</a></li>
+    <li><a href="#menu">Especialidades</a></li>
+    <li><a href="#avaliacoes">Avaliações</a></li>
+    <li><a href="#horario">Horário</a></li>
+    <li><a href="#contacto" class="nav-cta">Fale connosco</a></li>
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Menu mobile">
+  <a href="#sobre" onclick="closeMobile()">Sobre nós</a>
+  <a href="#menu" onclick="closeMobile()">Especialidades</a>
+  <a href="#avaliacoes" onclick="closeMobile()">Avaliações</a>
+  <a href="#horario" onclick="closeMobile()">Horário</a>
+  <a href="#contacto" onclick="closeMobile()">Fale connosco →</a>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<header id="hero" role="banner">
+  <div class="hero-content">
+    <div class="hero-badge" aria-label="Localização">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      Vila Nova de Gaia · Pastelaria
+    </div>
+
+    <h1>O Mundo<br/>Todo em<br/><em>Sabor Doce</em></h1>
+
+    <p class="hero-desc">
+      Uma pastelaria acolhedora onde cada doce conta uma história. Feitos com amor, para todos — incluindo opções vegan e vegetarianas que vão surpreender.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Fale connosco
+      </a>
+      <a href="#menu" class="btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
+        Ver especialidades
+      </a>
+    </div>
+
+    <div class="hero-stats" aria-label="Destaques do negócio">
+      <div class="stat-item">
+        <span class="stat-num">4,7</span>
+        <span class="stat-label">Avaliação Google</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">39+</span>
+        <span class="stat-label">Avaliações 5★</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Artesanal</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hero-img-wrapper">
+      <!-- Imagem principal hero — substituir por WebP real -->
+      <img
+        src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1200&q=80&fm=webp"
+        alt="Pastelaria Mundo Doce — interior acolhedor com doces artesanais"
+        width="900"
+        height="1200"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <div class="hero-img-overlay"></div>
+    </div>
+
+    <div class="hero-rating-float" aria-label="Avaliação Google">
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      <span class="rating-text">4,7 Google</span>
+    </div>
+
+    <div class="hero-card-float" aria-label="Opções vegan disponíveis">
+      <div class="hero-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12C2 6.48 6.48 2 12 2z"/><path d="M8 12s1 4 4 4 4-4 4-4"/><path d="M8 8s.5 2 2 2 2-2 2-2"/><path d="M14 8s.5 2 2 2 2-2 2-2"/></svg>
+      </div>
+      <div class="hero-card-text">
+        <span class="hero-card-title">Opções vegan</span>
+        <span class="hero-card-sub">Grande variedade disponível</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ SOBRE ══════════ -->
+<section id="sobre" aria-labelledby="sobre-titulo">
+  <div class="sobre-media reveal">
+    <div class="sobre-img-main">
+      <img
+        src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&q=80&fm=webp"
+        alt="Pasteleiro a preparar doces artesanais no Mundo Doce"
+        width="600"
+        height="750"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="sobre-img-accent">
+      <img
+        src="https://images.unsplash.com/photo-1517093728432-a0440f8d45af?w=400&q=80&fm=webp"
+        alt="Doces artesanais frescos da pastelaria Mundo Doce"
+        width="300"
+        height="300"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+
+  <div class="sobre-content reveal reveal-delay-2">
+    <p class="section-label">A nossa história</p>
+    <h2 id="sobre-titulo" class="section-title">Uma pastelaria<br/>feita com <em style="font-style:italic;color:var(--caramel);font-family:'Playfair Display',serif;">alma</em></h2>
+    <p class="section-subtitle">
+      No Mundo Doce, cada peça que sai da cozinha é preparada com ingredientes frescos e muito cuidado. Somos conhecidos pelo atendimento caloroso e pela diversidade — temos algo para toda a gente, incluindo opções vegan e vegetarianas dignas do maior orgulho.
+    </p>
+
+    <ul class="sobre-list" aria-label="Diferenciais do Mundo Doce">
+      <li>
+        <span class="sobre-list-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        Pastelaria 100% artesanal, preparada diariamente
+      </li>
+      <li>
+        <span class="sobre-list-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        Grande variedade de opções vegan e vegetarianas
+      </li>
+      <li>
+        <span class="sobre-list-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        Francesinha vegetariana — uma das melhores da região
+      </li>
+      <li>
+        <span class="sobre-list-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        Atendimento atencioso e ambiente acolhedor
+      </li>
+      <li>
+        <span class="sobre-list-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        Serviço de take away e entrega disponível
+      </li>
+    </ul>
+
+    <a href="#contacto" class="btn-primary" style="margin-top:.5rem;width:fit-content;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 8l4 4-4 4M3 12h18"/></svg>
+      Entre em contacto
+    </a>
+  </div>
+</section>
+
+<!-- ══════════ MENU / ESPECIALIDADES ══════════ -->
+<section id="menu" aria-labelledby="menu-titulo">
+  <div class="menu-header">
+    <div>
+      <p class="section-label">O que oferecemos</p>
+      <h2 id="menu-titulo" class="section-title">As nossas<br/>especialidades</h2>
+    </div>
+    <p class="section-subtitle" style="max-width:320px;">
+      Do pastel de nata ao bolo personalizado — temos sempre algo a sair do forno.
+    </p>
+  </div>
+
+  <div class="menu-grid" role="list">
+    <article class="menu-card menu-card-featured reveal" role="listitem">
+      <div class="menu-card-img">
+        <img
+          src="https://images.unsplash.com/photo-1621743478914-cc8a86d7e7b5?w=900&q=80&fm=webp"
+          alt="Seleção de pastelaria artesanal do Mundo Doce em Vila Nova de Gaia"
+          width="900"
+          height="400"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="menu-card-body">
+        <p class="menu-card-tag">⭐ Destaque</p>
+        <h3 class="menu-card-name">Seleção de Pastelaria Artesanal</h3>
+        <p class="menu-card-desc">Do clássico pastel de nata a criações exclusivas. Tudo feito com ingredientes frescos e receitas de casa.</p>
+      </div>
+    </article>
+
+    <article class="menu-card reveal reveal-delay-1" role="listitem">
+      <div class="menu-card-img">
+        <img
+          src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=600&q=80&fm=webp"
+          alt="Bolos artesanais do Mundo Doce"
+          width="600"
+          height="450"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="menu-card-body">
+        <p class="menu-card-tag">Doces &amp; Bolos</p>
+        <h3 class="menu-card-name">Bolos de Aniversário</h3>
+        <p class="menu-card-desc">Bolos personalizados para as suas ocasiões especiais, feitos sob encomenda com muito carinho.</p>
+      </div>
+    </article>
+
+    <article class="menu-card reveal reveal-delay-2" role="listitem">
+      <div class="menu-card-img">
+        <img
+          src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80&fm=webp"
+          alt="Opções vegan do Mundo Doce"
+          width="600"
+          height="450"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="menu-card-body">
+        <p class="menu-card-tag">🌱 Vegan</p>
+        <h3 class="menu-card-name">Menu 100% Vegan</h3>
+        <p class="menu-card-desc">Grande variedade de opções vegan — cogumelos, courgette, salsichas vegan, tofu e muito mais.</p>
+      </div>
+    </article>
+
+    <article class="menu-card reveal reveal-delay-1" role="listitem">
+      <div class="menu-card-img">
+        <img
+          src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&q=80&fm=webp"
+          alt="Café e bebidas quentes no Mundo Doce"
+          width="600"
+          height="450"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="menu-card-body">
+        <p class="menu-card-tag">Café &amp; Bebidas</p>
+        <h3 class="menu-card-name">Cafetaria &amp; Snacks</h3>
+        <p class="menu-card-desc">O café da manhã perfeito, com pequeno-almoço completo, snacks salgados e bebidas quentes e frias.</p>
+      </div>
+    </article>
+
+    <article class="menu-card reveal reveal-delay-2" role="listitem">
+      <div class="menu-card-img">
+        <img
+          src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80&fm=webp"
+          alt="Francesinha vegetariana do Mundo Doce"
+          width="600"
+          height="450"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="menu-card-body">
+        <p class="menu-card-tag">🏆 Exclusivo</p>
+        <h3 class="menu-card-name">Francesinha Vegetariana</h3>
+        <p class="menu-card-desc">Considerada uma das melhores da região, com seitan, tofu ou salsichas vegan — recheada e irresistível.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════ AVALIAÇÕES ══════════ -->
+<section id="avaliacoes" aria-labelledby="avaliacoes-titulo">
+  <div class="reviews-header reveal">
+    <div class="google-badge" aria-label="Avaliado no Google">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      Avaliações Google verificadas
+    </div>
+    <h2 id="avaliacoes-titulo" class="section-title" style="color:var(--white);">O que dizem<br/>os nossos clientes</h2>
+  </div>
+
+  <div class="reviews-grid" role="list">
+    <article class="review-card reveal" role="listitem">
+      <div class="review-stars" aria-label="5 estrelas">★★★★★</div>
+      <p class="review-text">"Every morning we tried another bakery in the area. This one is the absolute winner! The owner is very friendly, the pastries are amazing and there is a big variety — even a lot of vegan options!"</p>
+      <div class="review-author">
+        <div class="review-avatar" aria-hidden="true">MW</div>
+        <div>
+          <p class="review-name">Margo Willems</p>
+          <p class="review-date">Há 7 meses · Google</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="review-card reveal reveal-delay-1" role="listitem">
+      <div class="review-stars" aria-label="5 estrelas">★★★★★</div>
+      <p class="review-text">"É um café acolhedor com um atendimento atencioso e doces maravilhosos! Recomendo a toda a gente que passe por Vila Nova de Gaia."</p>
+      <div class="review-author">
+        <div class="review-avatar" aria-hidden="true">JC</div>
+        <div>
+          <p class="review-name">Juliana Cunha</p>
+          <p class="review-date">Há 3 meses · Google</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="review-card reveal reveal-delay-2" role="listitem">
+      <div class="review-stars" aria-label="5 estrelas">★★★★★</div>
+      <p class="review-text">"Francesinha vegetariana — se não a melhor, das melhores que já comi. Bem recheada, com cogumelos, courgette, salsichas vegan. Uma surpresa incrível!"</p>
+      <div class="review-author">
+        <div class="review-avatar" aria-hidden="true">SP</div>
+        <div>
+          <p class="review-name">Sylvia Paulo</p>
+          <p class="review-date">Há um ano · Google</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════ HORÁRIO ══════════ -->
+<section id="horario" aria-labelledby="horario-titulo">
+  <div class="reveal">
+    <p class="section-label">Estamos abertos</p>
+    <h2 id="horario-titulo" class="section-title">Horário<br/>de funcionamento</h2>
+
+    <div class="status-badge status-open" role="status" aria-live="polite">
+      <span class="status-dot" aria-hidden="true"></span>
+      Aberto agora · Fecha às 19:00
+    </div>
+
+    <table class="hours-table" aria-label="Horário semanal do Mundo Doce">
+      <tbody>
+        <tr class="today"><td class="day">Segunda-feira</td><td class="time">08:00 – 19:00</td></tr>
+        <tr><td class="day">Terça-feira</td><td class="time">08:00 – 19:00</td></tr>
+        <tr><td class="day">Quarta-feira</td><td class="time">08:00 – 19:00</td></tr>
+        <tr><td class="day">Quinta-feira</td><td class="time">08:00 – 19:00</td></tr>
+        <tr><td class="day">Sexta-feira</td><td class="time">08:00 – 19:00</td></tr>
+        <tr><td class="day">Sábado</td><td class="time">08:00 – 13:00</td></tr>
+        <tr><td class="day">Domingo</td><td class="closed">Encerrado</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-cards reveal reveal-delay-2">
+    <p class="section-subtitle" style="margin-bottom:1rem;">Como nos encontrar e falar connosco</p>
+
+    <address style="font-style:normal;display:flex;flex-direction:column;gap:1rem;">
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </div>
+        <div>
+          <p class="info-card-title">Morada</p>
+          <p class="info-card-value">R. da Bélgica 1774<br/>4400-052 Vila Nova de Gaia</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.35 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <p class="info-card-title">Telefone</p>
+          <p class="info-card-value"><a href="tel:+351221125345">22 112 5345</a></p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </div>
+        <div>
+          <p class="info-card-title">Redes Sociais</p>
+          <p class="info-card-value"><a href="https://www.facebook.com/share/16U6TAxQ7j/" target="_blank" rel="noopener noreferrer">Facebook — Mundo Doce</a></p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8l5 3-5 3V8z"/></svg>
+        </div>
+        <div>
+          <p class="info-card-title">Encomendas &amp; Take Away</p>
+          <p class="info-card-value">Take away e entrega disponíveis.<br/>Contacte-nos para encomendas.</p>
+        </div>
+      </div>
+    </address>
+  </div>
+</section>
+
+<!-- ══════════ CONTACTO ══════════ -->
+<section id="contacto" aria-labelledby="contacto-titulo">
+  <div class="reveal">
+    <p class="section-label">Fale connosco</p>
+    <h2 id="contacto-titulo" class="section-title">Deixe-nos<br/>uma mensagem</h2>
+    <p class="section-subtitle" style="margin: 1rem 0 2rem;">
+      Para encomendas, reservas ou qualquer questão — estamos aqui para ajudar. Respondemos o mais brevemente possível.
+    </p>
+
+    <form class="contact-form" id="contactForm" novalidate aria-label="Formulário de contacto">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="O seu nome" required autocomplete="given-name" />
+        </div>
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input type="tel" id="telefone" name="telefone" placeholder="9XX XXX XXX" autocomplete="tel" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="o.seu@email.com" required autocomplete="email" />
+      </div>
+
+      <div class="form-group">
+        <label for="assunto">Assunto</label>
+        <select id="assunto" name="assunto" required>
+          <option value="" disabled selected>Selecione um assunto…</option>
+          <option value="encomenda">Encomenda / Take Away</option>
+          <option value="aniversario">Bolo de Aniversário</option>
+          <option value="catering">Catering / Eventos</option>
+          <option value="info">Informações gerais</option>
+          <option value="outro">Outro assunto</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" placeholder="Descreva como podemos ajudar…" required></textarea>
+      </div>
+
+      <div class="form-submit">
+        <p class="form-note">Respondemos normalmente em menos de 24h.</p>
+        <button type="submit" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Enviar mensagem
+        </button>
+      </div>
+
+      <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Mensagem enviada com sucesso! Entraremos em contacto brevemente.
+      </div>
+    </form>
+  </div>
+
+  <div class="map-section reveal reveal-delay-2">
+    <div>
+      <p class="section-label">Como chegar</p>
+      <h3 class="section-title" style="font-size:clamp(1.5rem,2.5vw,2rem);margin-bottom:.5rem;">R. da Bélgica 1774</h3>
+      <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:1.5rem;">4400-052 Vila Nova de Gaia</p>
+    </div>
+
+    <div class="map-frame" role="application" aria-label="Mapa de localização do Mundo Doce">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3002.6!2d-8.6200!3d41.1280!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465818b0ce491%3A0x65ff9319aed57af7!2sMundo%20Doce!5e0!3m2!1spt!2spt!4v1680000000000"
+        width="600"
+        height="300"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Localização do Mundo Doce — R. da Bélgica 1774, Vila Nova de Gaia"
+      ></iframe>
+    </div>
+
+    <div class="map-actions">
+      <a
+        href="https://maps.google.com/?q=Mundo+Doce,+R.+da+Bélgica+1774,+4400-052+Vila+Nova+de+Gaia"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="map-btn primary"
+        aria-label="Abrir direções no Google Maps"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+        Como chegar
+      </a>
+      <a href="tel:+351221125345" class="map-btn" aria-label="Ligar para o Mundo Doce">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.35 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Ligar agora
+      </a>
+      <a href="https://www.facebook.com/share/16U6TAxQ7j/" target="_blank" rel="noopener noreferrer" class="map-btn" aria-label="Seguir o Mundo Doce no Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer role="contentinfo">
+  <div class="footer-top">
+    <div>
+      <p class="footer-brand">Mundo <span>Doce</span></p>
+      <p class="footer-tagline">Pastelaria artesanal em Vila Nova de Gaia — feita com amor, para todos.</p>
+      <div class="footer-social" aria-label="Redes sociais">
+        <a href="https://www.facebook.com/share/16U6TAxQ7j/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook do Mundo Doce">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="tel:+351221125345" class="social-icon" aria-label="Telefonar ao Mundo Doce">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.35 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+        <a href="#contacto" class="social-icon" aria-label="Enviar mensagem ao Mundo Doce">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Navegação</p>
+      <ul class="footer-links">
+        <li><a href="#sobre">Sobre nós</a></li>
+        <li><a href="#menu">Especialidades</a></li>
+        <li><a href="#avaliacoes">Avaliações</a></li>
+        <li><a href="#horario">Horário</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Contactos</p>
+      <ul class="footer-links">
+        <li><a href="https://maps.google.com/?q=Mundo+Doce+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer">R. da Bélgica 1774, Gaia</a></li>
+        <li><a href="tel:+351221125345">22 112 5345</a></li>
+        <li><a href="https://www.facebook.com/share/16U6TAxQ7j/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        <li style="color:rgba(255,255,255,.4);font-size:.85rem;margin-top:.5rem;">Seg–Sex: 08:00–19:00</li>
+        <li style="color:rgba(255,255,255,.4);font-size:.85rem;">Sáb: 08:00–13:00</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Mundo Doce. Todos os direitos reservados.</p>
+        <p class="footer-copy">by Digital Studio 2025</p>
+    <p class="footer-copy" aria-label="Avaliação no Google">
+      <span style="color:#F59E0B" aria-hidden="true">★★★★★</span> 4,7 · 39 avaliações Google
+    </p>
+  </div>
+</footer>
+
+<script>
+  // ── Nav scroll shadow
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // ── Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+    document.body.style.overflow = '';
+  }
+
+  // ── Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── Contact form (simulated submit — replace with FormSubmit/Netlify/etc)
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const assunto = document.getElementById('assunto').value;
+    const mensagem = document.getElementById('mensagem').value.trim();
+
+    if (!nome || !email || !assunto || !mensagem) {
+      alert('Por favor preencha todos os campos obrigatórios.');
+      return;
+    }
+
+    const btn = this.querySelector('button[type="submit"]');
+    btn.textContent = 'A enviar…';
+    btn.disabled = true;
+
+    // Replace this timeout with a real fetch() to your form endpoint
+    // e.g. FormSubmit.co, Netlify Forms, or your own API
+    setTimeout(() => {
+      this.reset();
+      document.getElementById('formSuccess').classList.add('show');
+      btn.textContent = 'Enviar mensagem';
+      btn.disabled = false;
+      setTimeout(() => {
+        document.getElementById('formSuccess').classList.remove('show');
+      }, 5000);
+    }, 1200);
+  });
+
+  // ── Update "today" highlight based on actual day
+  (function() {
+    const days = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+    const today = days[new Date().getDay()];
+    document.querySelectorAll('.hours-table .day').forEach(cell => {
+      if (cell.textContent.trim() === today) {
+        cell.closest('tr').classList.add('today');
+      } else {
+        cell.closest('tr').classList.remove('today');
+      }
+    });
+  })();
+</script>
+</body>
+</html>
